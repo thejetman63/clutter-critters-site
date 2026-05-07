@@ -153,7 +153,8 @@
                 <a href="CC-Application-2026.pdf" target="_blank" class="download-link">Click here to download and print a paper application.</a>
             </div>
 
-            <form id="applyForm" action="https://formspree.io/thejetman63@yahoo.com" method="POST">
+            <form id="applyForm" name="job-application" method="POST" data-netlify="true">
+                <input type="hidden" name="form-name" value="job-application" />
                 
                 <!-- Section 1 -->
                 <div class="form-section">
@@ -433,15 +434,19 @@
     <script>
         document.getElementById('applyForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const formData = new FormData(this);
-            fetch(this.action, {
-                method: 'POST',
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            }).then(() => {
+            const form = e.target;
+            const formData = new FormData(form);
+            
+            fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(formData).toString(),
+            })
+            .then(() => {
                 document.getElementById('successOverlay').style.display = 'flex';
                 window.scrollTo(0, 0);
-            }).catch(() => {
+            })
+            .catch((error) => {
                 alert("Oops! There was an error. Please try again.");
             });
         });
