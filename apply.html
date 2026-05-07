@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply - Clutter Critters Job Application</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal-dark: #2B6B78;
+            --teal-medium: #3A8591;
+            --teal-light: #5BA3AE;
+            --orange-bright: #FF8833;
+            --orange-light: #FFB366;
+            --cream: #F5F1E8;
+            --green-bright: #4CAF50;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Quicksand', sans-serif; background: var(--cream); color: #333; line-height: 1.6; }
+        h1, h2, h3 { font-family: 'Fredoka', sans-serif; color: var(--teal-dark); }
+
+        header { background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal-medium) 100%); padding: 1rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.1); text-align: center; }
+        .logo-img { width: 120px; height: auto; }
+
+        .container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        
+        .application-card {
+            background: white;
+            padding: 50px;
+            border-radius: 40px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.08);
+            border: 5px solid var(--teal-medium);
+        }
+
+        .form-header { text-align: center; margin-bottom: 30px; }
+        .form-header h1 { font-size: 3rem; margin-bottom: 10px; }
+        .form-header p { font-size: 1.1rem; color: #666; }
+
+        .paper-app-callout {
+            background: #fff8e1;
+            border: 2px dashed #fbc02d;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .paper-app-callout p { font-weight: 700; color: #795548; margin-bottom: 10px; }
+        .download-link { color: var(--orange-bright); font-weight: 800; text-decoration: underline; cursor: pointer; }
+
+        .form-section { margin-bottom: 35px; }
+        .section-title {
+            background: var(--teal-light);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .full-width { grid-column: span 2; }
+
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+        .form-group label { font-weight: 700; color: var(--teal-dark); font-size: 0.95rem; }
+        
+        input, textarea, select {
+            padding: 12px 15px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--orange-bright);
+            background: #fffdfa;
+        }
+
+        .radio-group { display: flex; gap: 30px; padding: 10px 0; }
+        .radio-item { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+        .radio-item input { width: auto; }
+
+        .submit-btn {
+            background: var(--orange-bright);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.3rem;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: 0.3s;
+            box-shadow: 0 8px 25px rgba(255,136,51,0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255,136,51,0.4);
+            filter: brightness(1.1);
+        }
+
+        .success-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--teal-dark);
+            color: white;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .success-overlay h2 { color: white; font-size: 4rem; margin-bottom: 20px; }
+
+        @media (max-width: 600px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+            .application-card { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html"><img src="clutter-critters-logo.png" alt="Clutter Critters Logo" class="logo-img"></a>
+    </header>
+
+    <div class="container">
+        <div class="application-card">
+            <div class="form-header">
+                <h1>Join the Crew</h1>
+                <p>Help us turn chaos into serenity, one room at a time.</p>
+            </div>
+
+            <div class="paper-app-callout">
+                <p>Prefer Paper? 📜</p>
+                <a href="CC-Application-2026.pdf" target="_blank" class="download-link">Click here to download and print a paper application.</a>
+            </div>
+
+            <form id="applyForm" action="https://formspree.io/thejetman63@yahoo.com" method="POST">
+                
+                <!-- Section 1 -->
+                <div class="form-section">
+                    <span class="section-title">1. Personal Details</span>
+                    <div class="form-grid">
+                        <div class="form-group" style="grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Middle Name</label>
+                                <input type="text" name="middleName">
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" name="lastName" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" name="phone" placeholder="(555) 000-0000" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" name="email" placeholder="jane@example.com" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Street Address</label>
+                            <input type="text" name="address" required>
+                        </div>
+                        <div class="form-group">
+                            <label>City</label>
+                            <input type="text" name="city" required>
+                        </div>
+                        <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <div class="form-group">
+                                <label>State</label>
+                                <input type="text" name="state" required>
+                            </div>
+                            <div class="form-group">
+                                <label>ZIP</label>
+                                <input type="text" name="zip" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2 -->
+                <div class="form-section">
+                    <span class="section-title">2. Availability</span>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Date Available</label>
+                            <input type="date" name="dateAvailable" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Desired Salary</label>
+                            <input type="text" name="salary" placeholder="$ / hour">
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Are you authorized to work in the U.S.?</label>
+                            <div class="radio-group">
+                                <label class="radio-item"><input type="radio" name="workAuth" value="Yes" required> Yes</label>
+                                <label class="radio-item"><input type="radio" name="workAuth" value="No"> No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3 -->
+                <div class="form-section">
+                    <span class="section-title">3. Education & Background</span>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>High School Name & City</label>
+                            <input type="text" name="highSchool">
+                            <div class="radio-group">
+                                <label style="font-size: 0.85rem;">Did you graduate?</label>
+                                <label class="radio-item"><input type="radio" name="hsGrad" value="Yes"> Yes</label>
+                                <label class="radio-item"><input type="radio" name="hsGrad" value="No"> No</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>College / Vocational Name & City</label>
+                            <input type="text" name="college">
+                            <div class="radio-group">
+                                <label style="font-size: 0.85rem;">Did you graduate?</label>
+                                <label class="radio-item"><input type="radio" name="colGrad" value="Yes"> Yes</label>
+                                <label class="radio-item"><input type="radio" name="colGrad" value="No"> No</label>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Please explain your degree or any relevant coursework</label>
+                            <textarea name="degreeExplain" placeholder="Tell us more about what you studied..." style="height: 80px;"></textarea>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Have you ever been convicted of a felony?</label>
+                            <div class="radio-group">
+                                <label class="radio-item"><input type="radio" name="felony" value="Yes" required> Yes</label>
+                                <label class="radio-item"><input type="radio" name="felony" value="No"> No</label>
+                            </div>
+                            <textarea name="felonyExplain" placeholder="If yes, please explain..." style="margin-top: 10px; height: 80px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 4 -->
+                <div class="form-section">
+                    <span class="section-title">4. Professional References</span>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Please provide two professional references.</p>
+                    
+                    <div class="form-grid">
+                        <!-- Reference 1 -->
+                        <div class="form-group">
+                            <label>Reference #1: Name</label>
+                            <input type="text" name="ref1Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Relationship & Phone</label>
+                            <input type="text" name="ref1Contact" placeholder="e.g. Former Manager - 555-0199" required>
+                        </div>
+                        
+                        <!-- Reference 2 -->
+                        <div class="form-group">
+                            <label>Reference #2: Name</label>
+                            <input type="text" name="ref2Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Relationship & Phone</label>
+                            <input type="text" name="ref2Contact" placeholder="e.g. Colleague - 555-0188" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 5 -->
+                <div class="form-section">
+                    <span class="section-title">5. Employment History</span>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">Please list your last three employers, starting with the most recent.</p>
+
+                    <!-- Employer #1 -->
+                    <div style="border-left: 4px solid var(--teal-medium); padding-left: 15px; margin-bottom: 30px;">
+                        <h4 style="margin-bottom: 15px; color: var(--teal-dark);">Employer #1 (Most Recent)</h4>
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label>Company Name</label>
+                                <input type="text" name="company1">
+                            </div>
+                            <div class="form-group">
+                                <label>Job Title</label>
+                                <input type="text" name="jobTitle1">
+                            </div>
+                            <div class="form-group">
+                                <label>Supervisor</label>
+                                <input type="text" name="supervisor1">
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Main Responsibilities</label>
+                                <textarea name="responsibilities1" style="height: 80px;"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Dates Employed</label>
+                                <input type="text" name="dates1" placeholder="From - To">
+                            </div>
+                            <div class="form-group">
+                                <label>Reason for Leaving</label>
+                                <input type="text" name="leaving1">
+                            </div>
+                            <div class="form-group full-width">
+                                <label>May we contact this employer?</label>
+                                <div class="radio-group">
+                                    <label class="radio-item"><input type="radio" name="contact1" value="Yes"> Yes</label>
+                                    <label class="radio-item"><input type="radio" name="contact1" value="No"> No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Employer #2 -->
+                    <div style="border-left: 4px solid var(--teal-light); padding-left: 15px; margin-bottom: 30px;">
+                        <h4 style="margin-bottom: 15px; color: var(--teal-dark);">Employer #2</h4>
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label>Company Name</label>
+                                <input type="text" name="company2">
+                            </div>
+                            <div class="form-group">
+                                <label>Job Title</label>
+                                <input type="text" name="jobTitle2">
+                            </div>
+                            <div class="form-group">
+                                <label>Supervisor</label>
+                                <input type="text" name="supervisor2">
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Main Responsibilities</label>
+                                <textarea name="responsibilities2" style="height: 80px;"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Dates Employed</label>
+                                <input type="text" name="dates2" placeholder="From - To">
+                            </div>
+                            <div class="form-group">
+                                <label>Reason for Leaving</label>
+                                <input type="text" name="leaving2">
+                            </div>
+                            <div class="form-group full-width">
+                                <label>May we contact this employer?</label>
+                                <div class="radio-group">
+                                    <label class="radio-item"><input type="radio" name="contact2" value="Yes"> Yes</label>
+                                    <label class="radio-item"><input type="radio" name="contact2" value="No"> No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Employer #3 -->
+                    <div style="border-left: 4px solid var(--orange-light); padding-left: 15px; margin-bottom: 30px;">
+                        <h4 style="margin-bottom: 15px; color: var(--teal-dark);">Employer #3</h4>
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label>Company Name</label>
+                                <input type="text" name="company3">
+                            </div>
+                            <div class="form-group">
+                                <label>Job Title</label>
+                                <input type="text" name="jobTitle3">
+                            </div>
+                            <div class="form-group">
+                                <label>Supervisor</label>
+                                <input type="text" name="supervisor3">
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Main Responsibilities</label>
+                                <textarea name="responsibilities3" style="height: 80px;"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Dates Employed</label>
+                                <input type="text" name="dates3" placeholder="From - To">
+                            </div>
+                            <div class="form-group">
+                                <label>Reason for Leaving</label>
+                                <input type="text" name="leaving3">
+                            </div>
+                            <div class="form-group full-width">
+                                <label>May we contact this employer?</label>
+                                <div class="radio-group">
+                                    <label class="radio-item"><input type="radio" name="contact3" value="Yes"> Yes</label>
+                                    <label class="radio-item"><input type="radio" name="contact3" value="No"> No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 6 -->
+                <div class="form-section">
+                    <span class="section-title">6. Electronic Signature</span>
+                    <p style="font-size: 0.85rem; margin-bottom: 20px; color: #777;">By submitting this application, I certify that my answers are true and complete. I understand that false information may result in my dismissal.</p>
+                    <div class="form-group">
+                        <label>Type Full Name to Sign</label>
+                        <input type="text" name="eSignature" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="successOverlay" class="success-overlay">
+        <h2>✨ Application Sent!</h2>
+        <p>Thank you for applying. We will review your application and get back to you soon.</p>
+        <a href="index.html" class="submit-btn" style="max-width: 300px; text-decoration: none;">Return Home</a>
+    </div>
+
+    <script>
+        document.getElementById('applyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            }).then(() => {
+                document.getElementById('successOverlay').style.display = 'flex';
+                window.scrollTo(0, 0);
+            }).catch(() => {
+                alert("Oops! There was an error. Please try again.");
+            });
+        });
+    </script>
+
+</body>
+</html>

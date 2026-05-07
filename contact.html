@@ -1,0 +1,151 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact | Clutter Critters</title>
+  <meta name="description" content="Contact Clutter Critters for a free estimate." />
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#1b6b7a">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <img class="brand-logo" src="assets/logo.png" alt="Clutter Critters logo" />
+        <div class="brand-title">
+          <strong>Clutter Critters</strong>
+          <span>Home organization at its best</span>
+        </div>
+      </a>
+
+      <nav class="nav" data-nav aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a class="active" href="contact.html">Contact</a>
+      </nav>
+
+      <div class="header-cta">
+        <a class="btn" href="tel:+1-555-555-5555">Call</a>
+        <a class="btn primary" href="#form">Free Estimate</a>
+      </div>
+
+      <button class="burger" type="button" data-burger aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section">
+      <div class="container">
+        <h2>Contact</h2>
+        <p class="lead">Tell us what youâ€™re organizing and weâ€™ll get back to you with next steps.</p>
+
+        <div class="grid cols-2">
+          <div class="card">
+            <h3>Quick contact</h3>
+            <p class="small">Replace these placeholders with your real info:</p>
+            <div class="hr"></div>
+            <p><strong>Phone:</strong> <a href="tel:+1-555-555-5555">(555) 555-5555</a></p>
+            <p><strong>Email:</strong> <a href="mailto:hello@cluttercritters.com">hello@cluttercritters.com</a></p>
+            <p><strong>Service area:</strong> <span>[Your City / Area]</span></p>
+            <div class="hr"></div>
+            <p class="small">
+              Want a form that submits without opening email?
+              Use a free service like Formspree and paste your URL into the formâ€™s <code>action</code> attribute.
+            </p>
+          </div>
+
+          <div class="card" id="form">
+            <h3>Request a free estimate</h3>
+            <p class="small">By default this opens an email draft on submit. You can enable a real endpoint later.</p>
+            <div class="hr"></div>
+
+            <!--
+              OPTION A (default): mailto fallback (no server needed)
+              OPTION B: Replace action with Formspree (or similar) URL, e.g. https://formspree.io/f/xxxxxxx
+            -->
+            <form data-mailto-form data-to="hello@cluttercritters.com" action="REPLACE_ME_WITH_FORM_ENDPOINT" method="POST">
+              <div class="form-row">
+                <div>
+                  <label for="name">Name</label>
+                  <input id="name" name="name" autocomplete="name" required />
+                </div>
+                <div>
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" autocomplete="email" required />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div>
+                  <label for="phone">Phone</label>
+                  <input id="phone" name="phone" autocomplete="tel" />
+                </div>
+                <div>
+                  <label for="service">What do you want organized?</label>
+                  <select id="service" name="service">
+                    <option>Closet / Bedroom</option>
+                    <option>Kitchen / Pantry</option>
+                    <option>Garage / Storage</option>
+                    <option>Home office / Paper</option>
+                    <option>Moving / Unpacking</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label for="message">Details (size of space, timeline, anything helpful)</label>
+                <textarea id="message" name="message" placeholder="Example: pantry is overflowing, want zones + containers. Available weekends."></textarea>
+              </div>
+
+              <button class="btn primary" type="submit">Send request</button>
+              <p class="small">Tip: You can attach photos by emailing us directly if needed.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container cta-inner">
+        <div>
+          <h2>Want faster scheduling?</h2>
+          <p>Add your booking link here (Calendly, Square, etc.) when youâ€™re ready.</p>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn primary" href="#form">Request estimate</a>
+          <a class="btn" href="tel:+1-555-555-5555">Call</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="kicker"><span class="dot"></span> Clutter Critters</div>
+        <div class="small">Â© <span id="y"></span> Clutter Critters. All rights reserved.</div>
+      </div>
+      <div class="footer-links" aria-label="Footer links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
+

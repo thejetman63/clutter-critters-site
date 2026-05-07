@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clutter Critters - Transforming chaos into serenity, one room at a time.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            color: #333;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        :root {
+            --teal-dark: #2B6B78;
+            --teal-medium: #3A8591;
+            --teal-light: #5BA3AE;
+            --orange-bright: #FF8833;
+            --orange-light: #FFB366;
+            --cream: #F5F1E8;
+            --green-bright: #4CAF50;
+            --yellow-accent: #FFEB3B;
+        }
+
+        /* Cloud decorations */
+        .clouds {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 100px;
+            opacity: 0.8;
+        }
+
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 100px;
+        }
+
+        .cloud-1 {
+            width: 120px;
+            height: 40px;
+            top: 50px;
+            left: 10%;
+            animation: float 30s infinite;
+        }
+
+        .cloud-1::before {
+            width: 50px;
+            height: 50px;
+            top: -25px;
+            left: 20px;
+        }
+
+        .cloud-1::after {
+            width: 60px;
+            height: 40px;
+            top: -15px;
+            right: 20px;
+        }
+
+        .cloud-2 {
+            width: 100px;
+            height: 35px;
+            top: 150px;
+            right: 15%;
+            animation: float 25s infinite;
+            animation-delay: 5s;
+        }
+
+        .cloud-2::before {
+            width: 45px;
+            height: 45px;
+            top: -20px;
+            left: 15px;
+        }
+
+        .cloud-2::after {
+            width: 50px;
+            height: 35px;
+            top: -12px;
+            right: 15px;
+        }
+
+        /* Apply Banner */
+        .apply-banner {
+            background: linear-gradient(90deg, var(--orange-bright), #FFB366);
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+            z-index: 1001;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-decoration: none;
+            display: block;
+        }
+
+        .apply-banner:hover {
+            filter: brightness(1.1);
+            padding: 14px 12px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal-medium) 100%);
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 3rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            width: 100px;
+            height: auto;
+        }
+
+        .logo-text .tagline {
+            font-size: 0.8rem;
+            display: block;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+
+        .header-phone {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--orange-bright);
+            border-radius: 30px;
+            transition: all 0.3s;
+            border: 3px solid white;
+        }
+
+        .header-phone:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Floating Contact Button */
+        .floating-contact {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+
+        .floating-contact a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--orange-bright);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            border: 3px solid white;
+        }
+
+        .floating-contact a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: var(--orange-bright);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal-medium) 50%, var(--teal-light) 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-logo {
+            width: 280px;
+            height: auto;
+            margin: 0 auto 2rem;
+            filter: drop-shadow(0 10px 40px rgba(0,0,0,0.3));
+        }
+
+
+        .hero-tagline {
+            font-size: 1.5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 3rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--orange-bright);
+            color: white;
+            padding: 1.3rem 3.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.3rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            border: 4px solid white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+            background: var(--orange-light);
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 2rem;
+            background: var(--cream);
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 3.5rem;
+            color: var(--teal-dark);
+            margin-bottom: 2rem;
+            text-transform: lowercase;
+            letter-spacing: 2px;
+        }
+
+        .about h2 span {
+            color: var(--orange-bright);
+        }
+
+        .about-content {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border: 5px solid var(--teal-medium);
+        }
+
+        .about-content p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+        }
+
+        .why-section {
+            margin-top: 4rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .why-section h3 {
+            font-size: 2.5rem;
+            color: var(--teal-dark);
+            margin-bottom: 3rem;
+            text-transform: lowercase;
+            letter-spacing: 2px;
+        }
+
+        .why-section h3 span {
+            color: var(--orange-bright);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .why-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 3px solid var(--orange-bright);
+        }
+
+        .why-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .why-card h4 {
+            font-size: 1.4rem;
+            color: var(--teal-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .why-card p {
+            color: #666;
+            font-size: 1.05rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 3.5rem;
+            color: var(--teal-dark);
+            margin-bottom: 2rem;
+            text-transform: lowercase;
+            letter-spacing: 2px;
+        }
+
+        .services h2 span {
+            color: var(--orange-bright);
+        }
+
+        .services-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .services-intro p {
+            font-size: 1.3rem;
+            color: #555;
+        }
+
+        .service-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border: 4px solid var(--teal-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: var(--orange-bright);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+            border-color: var(--orange-bright);
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--teal-dark);
+        }
+
+        .service-card p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 6rem 2rem;
+            background: var(--cream);
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            color: var(--teal-dark);
+            text-transform: lowercase;
+            letter-spacing: 2px;
+        }
+
+        .testimonials h2 span {
+            color: var(--orange-bright);
+        }
+
+        .testimonials-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .testimonials-intro p {
+            font-size: 1.3rem;
+            color: #555;
+        }
+
+        .testimonial-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .testimonial {
+            background: white;
+            color: #333;
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-left: 8px solid var(--orange-bright);
+        }
+
+        .stars {
+            color: var(--yellow-accent);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial p {
+            font-size: 1.15rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--teal-dark);
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .testimonial-service {
+            font-size: 0.95rem;
+            color: var(--orange-bright);
+            font-weight: 600;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .contact h2 {
+            text-align: center;
+            font-size: 3.5rem;
+            color: var(--teal-dark);
+            margin-bottom: 2rem;
+            text-transform: lowercase;
+            letter-spacing: 2px;
+        }
+
+        .contact h2 span {
+            color: var(--orange-bright);
+        }
+
+        .contact-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-intro {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .contact-intro p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        .contact-box {
+            max-width: 700px;
+            margin: 0 auto 4rem;
+            background: var(--cream);
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+            border: 5px solid var(--teal-medium);
+        }
+
+        .contact-box h3 {
+            font-size: 2rem;
+            color: var(--teal-dark);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .contact-box p {
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .contact-box a {
+            color: var(--teal-dark);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .contact-box a:hover {
+            color: var(--orange-bright);
+            text-decoration: underline;
+        }
+
+        .contact-emoji {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .process-section {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .process-section h3 {
+            font-size: 2.5rem;
+            color: var(--teal-dark);
+            text-align: center;
+            margin-bottom: 3rem;
+            text-transform: lowercase;
+            letter-spacing: 2px;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        .process-step {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 3px solid var(--orange-bright);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            border-radius: 50%;
+            background: var(--orange-bright);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .process-step h4 {
+            font-size: 1.3rem;
+            color: var(--teal-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .process-step p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal-medium) 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            font-size: 1rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        .footer-logo {
+            width: 120px;
+            height: auto;
+            margin: 0 auto 1rem;
+            filter: drop-shadow(0 4px 15px rgba(0,0,0,0.3));
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--teal-dark);
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem 0;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1.5rem 2rem;
+                border-radius: 0;
+            }
+
+    
+        .header-phone {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--orange-bright);
+            border-radius: 30px;
+            transition: all 0.3s;
+            border: 3px solid white;
+        }
+
+        .header-phone:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Floating Contact Button */
+        .floating-contact {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+
+        .floating-contact a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--orange-bright);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            border: 3px solid white;
+        }
+
+        .floating-contact a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .mobile-toggle {
+                display: block;
+            }
+
+            .hero-logo {
+                width: 200px;
+            }
+
+    
+        .hero-tagline {
+            font-size: 1.5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-subtitle {
+                font-size: 1.3rem;
+            }
+
+            .about h2,
+            .services h2,
+            .testimonials h2,
+            .contact h2 {
+                font-size: 2.5rem;
+            }
+
+            .service-grid,
+            .testimonial-grid,
+            .why-grid,
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .logo-img {
+                width: 70px;
+            }
+
+            .logo-text .tagline {
+                font-size: 0.65rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="clouds">
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+    </div>
+
+    <a class="apply-banner" href="apply.html">
+        Clutter Critters is hiring! <strong>Apply Today!</strong>
+    </a>
+    <header>
+        <nav>
+            <div class="logo-container">
+                <a href="#home" style="display: flex; align-items: center; text-decoration: none;">
+                <img src="clutter-critters-logo.png" alt="Clutter Critters Logo" class="logo-img">
+                <div class="logo-text">
+                    <span class="tagline">Home Organizing at its best.</span>
+                </div>
+                </a>
+            </div>
+            <button class="mobile-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="packages.html">Packages</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <img src="clutter-critters-logo.png" alt="Clutter Critters Logo" class="hero-logo">
+            <p class="hero-tagline">Home Organization at its Best.</p>
+            <p class="hero-subtitle">Transforming chaos into serenity,<br>one room at a time.</p>
+            <a href="#contact" class="cta-button">Schedule Your Consultation</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>welcome to <span>clutter critters!</span></h2>
+        <div class="about-content">
+            <p>We transform cluttered, chaotic spaces into beautifully organized havens that bring you peace of mind and make daily life easier.</p>
+            <p>Our friendly team brings creativity, practical solutions, and a playful approach to every project. We believe organization should be fun, functional, and perfectly tailored to how you live.</p>
+            <p><strong>Let us help you create spaces where everything has its place and life feels lighter!</strong></p>
+        </div>
+
+        <div class="why-section">
+            <h3>Why Choose <span>Us?</span></h3>
+            <div class="why-grid">
+                <div class="why-card">
+                    <span class="why-icon">🏆</span>
+                    <h4>Experienced Team</h4>
+                    <p>Professional organizers with years of hands-on experience</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-icon">💡</span>
+                    <h4>Creative Solutions</h4>
+                    <p>Customized systems designed specifically for your needs</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-icon">❤️</span>
+                    <h4>Caring Approach</h4>
+                    <p>Judgment-free service with compassion and understanding</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-icon">⚡</span>
+                    <h4>Fast Results</h4>
+                    <p>Efficient process that delivers immediate transformation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div style="text-align: center; padding: 3rem 2rem; background: var(--cream);">
+        <a href="#contact" class="cta-button">Ready to Get Organized? Contact Us!</a>
+    </div>
+
+    <section id="services" class="services">
+        <h2>our <span>services</span></h2>
+        <div class="services-intro">
+            <p>From single rooms to entire homes, we offer comprehensive organization solutions tailored to your unique needs and lifestyle.</p>
+        </div>
+
+        <div class="service-grid">
+            <div class="service-card">
+                <span class="service-icon">🏠</span>
+                <h3>Whole Home Organization</h3>
+                <p>Complete home transformation from top to bottom. We'll create systems that work for your family's unique lifestyle and keep everything running smoothly.</p>
+            </div>
+            
+            <div class="service-card">
+                <span class="service-icon">🍳</span>
+                <h3>Kitchen & Pantry</h3>
+                <p>Make meal prep a breeze with organized cabinets, drawers, and pantries that are both functional and beautiful.</p>
+            </div>
+            
+            <div class="service-card">
+                <span class="service-icon">👕</span>
+                <h3>Closet Makeovers</h3>
+                <p>Transform your closets into stylish, efficient spaces where you can actually find what you need!</p>
+            </div>
+            
+            <div class="service-card">
+                <span class="service-icon">🎨</span>
+                <h3>Kids' Rooms</h3>
+                <p>Fun organization systems that teach children responsibility while keeping their spaces tidy.</p>
+            </div>
+            
+            <div class="service-card">
+                <span class="service-icon">🏢</span>
+                <h3>Home Office Setup</h3>
+                <p>Create a productive workspace with smart storage solutions and organizational systems.</p>
+            </div>
+            
+            <div class="service-card">
+                <span class="service-icon">📦</span>
+                <h3>Moving & Unpacking</h3>
+                <p>Take the stress out of moving! We'll help you pack, unpack, and organize your new space perfectly.</p>
+            </div>
+        </div>
+    </section>
+
+    <div style="text-align: center; padding: 3rem 2rem; background: white;">
+        <a href="#contact" class="cta-button">Schedule Your Free Consultation!</a>
+    </div>
+
+    <section id="testimonials" class="testimonials">
+        <h2>what our <span>clients say</span></h2>
+        <div class="testimonials-intro">
+            <p>Don't just take our word for it - hear from families we've helped transform their spaces!</p>
+        </div>
+
+        <div class="testimonial-grid">
+            <div class="testimonial">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"Clutter Critters transformed our chaotic playroom into a space my kids actually want to keep clean! The colorful bins and labels make cleanup feel like a game."</p>
+                <div class="testimonial-author">— Sarah M.</div>
+                <div class="testimonial-service">Whole Home Organization</div>
+            </div>
+            
+            <div class="testimonial">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"I can finally find everything in my kitchen! The team was so creative with our limited cabinet space. Cooking is actually enjoyable again."</p>
+                <div class="testimonial-author">— Michael T.</div>
+                <div class="testimonial-service">Kitchen & Pantry</div>
+            </div>
+            
+            <div class="testimonial">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"Moving was always my nightmare, but Clutter Critters made it so easy. They unpacked and organized our entire house in just two days. Worth every penny!"</p>
+                <div class="testimonial-author">— Jennifer L.</div>
+                <div class="testimonial-service">Moving & Unpacking</div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="faq" class="faq" style="padding: 6rem 2rem; background: var(--cream);">
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+            <h2 style="font-size: 3.5rem; color: var(--teal-dark); margin-bottom: 2rem; text-transform: lowercase; letter-spacing: 2px;">
+                Frequently Asked <span style="color: var(--orange-bright);">Questions</span>
+            </h2>
+            <div style="background: white; padding: 4rem; border-radius: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); border: 5px solid var(--teal-medium);">
+                <span style="font-size: 4rem; display: block; margin-bottom: 1rem;">🚧</span>
+                <h3 style="font-size: 2rem; color: var(--teal-dark); margin-bottom: 1rem;">Coming Soon!</h3>
+                <p style="font-size: 1.2rem; color: #666;">We're working on answering all your organizing questions. Check back soon!</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="blog" class="blog" style="padding: 6rem 2rem; background: white;">
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+            <h2 style="font-size: 3.5rem; color: var(--teal-dark); margin-bottom: 2rem; text-transform: lowercase; letter-spacing: 2px;">
+                Organization <span style="color: var(--orange-bright);">Tips & Blog</span>
+            </h2>
+            <div style="background: var(--cream); padding: 4rem; border-radius: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); border: 5px solid var(--orange-bright);">
+                <span style="font-size: 4rem; display: block; margin-bottom: 1rem;">📝</span>
+                <h3 style="font-size: 2rem; color: var(--teal-dark); margin-bottom: 1rem;">Coming Soon!</h3>
+                <p style="font-size: 1.2rem; color: #666;">Get ready for helpful tips, tricks, and inspiration to keep your space organized!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>let's get <span>started!</span></h2>
+        <div class="contact-content">
+            <div class="contact-intro">
+                <p>Ready to transform your space? We'd love to hear from you!</p>
+            </div>
+
+            <div class="contact-box">
+                <h3>Contact Us</h3>
+                <p><span class="contact-emoji">📧</span> <strong>Email:</strong><br>
+                <a href="/cdn-cgi/l/email-protection#9ff8faebf0edf8fef1f6e5fafbdffcf3eaebebfaedfcedf6ebebfaedecb1fcf0f2"><span class="__cf_email__" data-cfemail="97f0f2e3f8e5f0f6f9feedf2f3d7f4fbe2e3e3f2e5f4e5fee3e3f2e5e4b9f4f8fa">[email&#160;protected]</span></a></p>
+                
+                <p><span class="contact-emoji">📱</span> <strong>Phone:</strong><br>
+                <a href="tel:805-390-1457">(805) 390-1457</a></p>
+                
+                <p><span class="contact-emoji">📍</span> <strong>Service Area:</strong><br>
+                Servicing Southern California</p>
+                
+                <p><span class="contact-emoji">⏰</span> <strong>Hours:</strong><br>
+                Monday - Friday: 9:00 AM - 6:00 PM<br>
+                Saturday: 10:00 AM - 4:00 PM<br>
+                Sunday: Closed</p>
+            </div>
+
+            <div class="process-section">
+                <h3>What to Expect</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <span class="step-number">1</span>
+                        <h4>Initial Consultation</h4>
+                        <p>We'll discuss your needs, goals, and vision for your space.</p>
+                    </div>
+                    <div class="process-step">
+                        <span class="step-number">2</span>
+                        <h4>Custom Plan</h4>
+                        <p>We create a personalized organization plan tailored to your lifestyle.</p>
+                    </div>
+                    <div class="process-step">
+                        <span class="step-number">3</span>
+                        <h4>Transformation</h4>
+                        <p>Our team works efficiently to transform your space.</p>
+                    </div>
+                    <div class="process-step">
+                        <span class="step-number">4</span>
+                        <h4>Enjoy!</h4>
+                        <p>Relax and enjoy your beautifully organized home.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <img src="clutter-critters-logo.png" alt="Clutter Critters Logo" class="footer-logo">
+        <p>&copy; 2026 Clutter Critters Home Organization. All rights reserved.</p>
+        <p>Transforming homes with friendly, creative organization!</p>
+    </footer>
+
+    <!-- Floating Contact Button -->
+    <div class="floating-contact">
+        <a href="tel:805-390-1457">📞 Call Now</a>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src=

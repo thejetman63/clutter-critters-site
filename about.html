@@ -1,0 +1,135 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About | Clutter Critters</title>
+  <meta name="description" content="Meet Clutter Critters â€” friendly, practical home organization." />
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#1b6b7a">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <img class="brand-logo" src="assets/logo.png" alt="Clutter Critters logo" />
+        <div class="brand-title">
+          <strong>Clutter Critters</strong>
+          <span>Home organization at its best</span>
+        </div>
+      </a>
+
+      <nav class="nav" data-nav aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a class="active" href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="header-cta">
+        <a class="btn" href="tel:+1-555-555-5555">Call</a>
+        <a class="btn primary" href="contact.html">Free Estimate</a>
+      </div>
+
+      <button class="burger" type="button" data-burger aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section">
+      <div class="container">
+        <h2>About Clutter Critters</h2>
+        <p class="lead">
+          Clutter Critters is a home organization service built for real life.
+          We believe your home should support you â€” not stress you out.
+        </p>
+
+        <div class="grid cols-2">
+          <div class="card">
+            <h3>Our approach</h3>
+            <p>
+              Weâ€™re friendly, judgment-free, and practical.
+              We donâ€™t just make things look pretty â€” we create simple systems that match your routines.
+            </p>
+            <div class="hr"></div>
+            <div class="step" style="padding:0; border:none">
+              <div>
+                <h4>Organize with purpose</h4>
+                <p>Everything gets a â€œhomeâ€ so cleanup is quick and effortless.</p>
+              </div>
+            </div>
+            <div class="step mtop-14" style="padding:0; border:none">
+              <div>
+                <h4>Keep it maintainable</h4>
+                <p>We build a plan you can actually keep up with.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>What makes us different</h3>
+            <p>
+              We help you decide what stays, what goes, and how to store what matters.
+              Youâ€™ll leave with less clutter â€” and more clarity.
+            </p>
+            <div class="hr"></div>
+            <ul>
+              <li>Friendly coaching (no pressure)</li>
+              <li>Donation-ready sorting</li>
+              <li>Clear labeling and zones</li>
+              <li>Optional storage suggestions</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="hr"></div>
+
+        <h2>Service area</h2>
+        <div class="card">
+          <p><strong>We currently serve:</strong> <span>[Your City / County / Region]</span></p>
+          <p class="small">Tip: Update this text to match your GoDaddy domain + service area for better local SEO.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container cta-inner">
+        <div>
+          <h2>Want to work together?</h2>
+          <p>Tell us what space is driving you crazy â€” weâ€™ll handle the rest.</p>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn primary" href="contact.html">Contact us</a>
+          <a class="btn" href="services.html">View services</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="kicker"><span class="dot"></span> Clutter Critters</div>
+        <div class="small">Â© <span id="y"></span> Clutter Critters. All rights reserved.</div>
+      </div>
+      <div class="footer-links" aria-label="Footer links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
+
