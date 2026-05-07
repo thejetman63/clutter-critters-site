@@ -114,8 +114,8 @@
         .apply-banner {
             background: var(--orange-bright);
             color: white;
-            padding: 0 12px;
-            height: 48px;
+            padding: 8px 12px;
+            min-height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -126,7 +126,7 @@
             transition: 0.3s;
             position: sticky;
             top: 0;
-            z-index: 1001;
+            z-index: 1010;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             text-decoration: none;
         }
@@ -806,13 +806,16 @@
             }
 
             .hero-logo {
-                width: 320px;
-                margin-bottom: 25px;
-                filter: drop-shadow(0 15px 30px rgba(0,0,0,0.25));
+                width: 280px;
+                margin-bottom: 20px;
+                filter: drop-shadow(0 10px 30px rgba(0,0,0,0.25));
             }
 
-    
-        .hero-tagline { font-family: "Luckiest Guy", cursive; font-size: 3.5rem; color: white; -webkit-text-stroke: 2.5px #FF7E33; margin-bottom: 1.5rem; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; display: block; line-height: 1.1; text-shadow: 4px 4px 0px rgba(0,0,0,0.1); }
+            .hero-tagline {
+                font-size: 2.2rem;
+                -webkit-text-stroke: 1.5px #FF7E33;
+                letter-spacing: 1px;
+            }
 
         .hero-subtitle {
                 font-size: 1.3rem;
