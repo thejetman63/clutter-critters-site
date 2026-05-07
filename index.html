@@ -114,17 +114,21 @@
         .apply-banner {
             background: var(--orange-bright);
             color: white;
-            padding: 12px;
+            padding: 0 12px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
             font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
-            position: relative;
+            position: sticky;
+            top: 0;
             z-index: 1001;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             text-decoration: none;
-            display: block;
         }
 
         .apply-banner:hover {
@@ -138,7 +142,7 @@
             padding: 1rem 0;
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
             position: sticky;
-            top: 0;
+            top: 48px;
             z-index: 1000;
         }
 
@@ -880,7 +884,7 @@
     </div>
 
     <a class="apply-banner" href="apply.html">
-        Clutter Critters is hiring! <strong>Apply Today!</strong>
+        Clutter Critters is hiring! Apply today!
     </a>
     <header>
         <nav>
