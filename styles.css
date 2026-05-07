@@ -1,4 +1,4 @@
-﻿:root{
+:root{
   /* Brand-inspired palette (softened) */
   --teal-900:#0f4c57;
   --teal-700:#1b6b7a;
@@ -7,9 +7,9 @@
   --cream:#fff7ef;
   --cream-2:#fff1e6;
 
-  --peach:#ff8a6b;   /* primary CTA */
-  --peach-2:#ff6f4a; /* hover */
-  --gold:#f4b05e;    /* accent (matches your orange) */
+  --peach:#FF7E33;   /* primary CTA */
+  --peach-2:#E66B2A; /* hover */
+  --gold:#FFB366;    /* accent (matches your logo orange light) */
 
   --ink:#1f2937;
   --muted:#5b6776;
