@@ -427,3 +427,9 @@ img{max-width:100%;display:block}
 .back-to-top.visible {
   display: block;
 }
+
+@media (max-width: 600px) {
+  .back-to-top {
+    bottom: 85px;
+  }
+}
