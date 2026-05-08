@@ -404,11 +404,11 @@ img{max-width:100%;display:block}
   transform: none;
   background: rgba(15, 76, 87, 0.9);
   color: #fff;
-  padding: 10px 30px;
+  padding: 6px 18px;
   border-radius: 100px;
   text-decoration: none;
-  font-weight: 700;
-  font-size: 0.9rem;
+  font-weight: 600;
+  font-size: 0.8rem;
   z-index: 1001;
   box-shadow: 0 10px 24px rgba(31,41,55,.15);
   transition: all 0.3s ease;
