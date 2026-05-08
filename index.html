@@ -12,6 +12,78 @@
             box-sizing: border-box;
         }
 
+        /* Floating Contact Button - Small & Oval */
+        .floating-contact {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            animation: pulse 2s infinite;
+        }
+
+        .floating-contact a {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            gap: 6px !important;
+            background: #FF7E33 !important; /* orange-bright fallback */
+            background: var(--orange-bright) !important;
+            color: white !important;
+            padding: 4px 12px !important;
+            border-radius: 100px !important;
+            text-decoration: none !important;
+            font-weight: 700 !important;
+            font-size: 0.75rem !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+            border: 1.5px solid white !important;
+            transition: all 0.3s ease;
+            white-space: nowrap !important;
+            width: auto !important;
+            height: auto !important;
+            line-height: 1 !important;
+        }
+
+        .floating-contact a:hover {
+            transform: scale(1.05) !important;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2) !important;
+        }
+
+        .floating-contact svg {
+            width: 14px !important;
+            height: 14px !important;
+            fill: white !important;
+            display: inline-block !important;
+            margin: 0 !important;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(43, 107, 120, 0.85);
+            color: white;
+            padding: 6px 18px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            z-index: 9998;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+            display: none;
+        }
+
+        .back-to-top.visible {
+            display: block;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
         html {
             scroll-behavior: smooth;
         }
@@ -144,34 +216,6 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        /* Floating Contact Button */
-        .floating-contact {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-            animation: pulse 2s infinite;
-        }
-
-        .floating-contact a {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--orange-bright);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-            border: 3px solid white;
-        }
-
-        .floating-contact a:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-        }
 
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
@@ -697,40 +741,6 @@
         }
 
         /* Floating Contact Button */
-        .floating-contact {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-            animation: pulse 2s infinite;
-        }
-
-        .floating-contact a {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--orange-bright);
-            color: white;
-            padding: 5px 14px !important;
-            border-radius: 100px !important;
-            text-decoration: none !important;
-            font-weight: 700 !important;
-            font-size: 0.8rem !important;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-            border: 1.5px solid white !important;
-        }
-
-        .floating-contact svg {
-            width: 14px !important;
-            height: 14px !important;
-            fill: white !important;
-            margin-right: 4px !important;
-        }
-
-        .floating-contact a:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-        }
 
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
@@ -798,39 +808,21 @@
             }
         }
 
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            transform: none;
-            background: rgba(43, 107, 120, 0.85);
-            color: white;
-            padding: 6px 18px;
-            border-radius: 100px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.8rem;
-            z-index: 999;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.2);
-            display: none; /* Hidden by default, shown via JS */
-        }
-
-        .back-to-top:hover {
-            background: var(--teal-medium);
-            bottom: 35px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-            color: white;
-        }
-
-        .back-to-top.visible {
-            display: block;
-        }
     </style>
 </head>
 <body>
+
+    <!-- Floating Contact Button -->
+    <div class="floating-contact">
+        <a href="tel:805-390-1457">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.045 15.045 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1.02A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/>
+            </svg>
+            Call Now
+        </a>
+    </div>
+
+    <a href="#home" id="backToTop" class="back-to-top">Back to Top ↑</a>
 
     <a class="apply-banner" href="apply.html">
         Clutter Critters is hiring! Apply today!
@@ -915,9 +907,21 @@
             <div class="service-card">
                 <span class="service-icon">🏠</span>
                 <h3>Whole Home Organization</h3>
-                <p>Complete home transformation from top to bottom. We'll create systems that work for your family's unique lifestyle and keep everything running smoothly.</p>
+                <p>Complete home transformation. We create functional systems for every room that fit your family's lifestyle.</p>
             </div>
             
+            <div class="service-card">
+                <span class="service-icon">👶</span>
+                <h3>Baby Proofing</h3>
+                <p>Safety first! We help prepare your home for your little ones with comprehensive safety solutions and organization.</p>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">🐾</span>
+                <h3>Pet Friendly Organization</h3>
+                <p>Because your furry friends need order too! We create pet-friendly storage for toys, food, and gear that keeps your home tidy.</p>
+            </div>
+
             <div class="service-card">
                 <span class="service-icon">🍳</span>
                 <h3>Kitchen & Pantry</h3>
@@ -937,15 +941,21 @@
             </div>
             
             <div class="service-card">
-                <span class="service-icon">🏢</span>
-                <h3>Home Office Setup</h3>
-                <p>Create a productive workspace with smart storage solutions and organizational systems.</p>
+                <span class="service-icon">🚛</span>
+                <h3>Junk Removal</h3>
+                <p>Let us help you clear the clutter. We'll handle the sorting and removal of items you no longer need.</p>
             </div>
             
             <div class="service-card">
+                <span class="service-icon">🗓️</span>
+                <h3>Moving Preparation</h3>
+                <p>Stress-free moving prep! We help you declutter and organize before the big move to ensure a smooth transition.</p>
+            </div>
+
+            <div class="service-card">
                 <span class="service-icon">📦</span>
-                <h3>Moving & Unpacking</h3>
-                <p>Take the stress out of moving! We'll help you pack, unpack, and organize your new space perfectly.</p>
+                <h3>Pack / Unpack</h3>
+                <p>Expert packing and unpacking services to get you settled into your new home quickly and organized from day one.</p>
             </div>
         </div>
     </section>
@@ -1070,17 +1080,6 @@
         <p>Transforming homes with friendly, creative organization!</p>
     </footer>
 
-    <!-- Floating Contact Button -->
-    <div class="floating-contact">
-        <a href="tel:805-390-1457">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.045 15.045 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1.02A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/>
-            </svg>
-            Call Now
-        </a>
-    </div>
-
-    <a href="#home" id="backToTop" class="back-to-top">Back to Top ↑</a>
 
     <script>
         // Back to Top functionality
