@@ -400,8 +400,8 @@ img{max-width:100%;display:block}
 .back-to-top {
   position: fixed;
   bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 30px;
+  transform: none;
   background: rgba(15, 76, 87, 0.9);
   color: #fff;
   padding: 10px 20px;
@@ -430,6 +430,7 @@ img{max-width:100%;display:block}
 
 @media (max-width: 600px) {
   .back-to-top {
-    bottom: 85px;
+    bottom: 30px;
+    left: 15px;
   }
 }
