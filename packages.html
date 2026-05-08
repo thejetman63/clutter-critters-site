@@ -444,6 +444,36 @@
                 padding: 0.8rem 1.2rem;
             }
         }
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(43, 107, 120, 0.85);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+            display: none;
+        }
+
+        .back-to-top:hover {
+            background: var(--teal-medium);
+            bottom: 35px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            color: white;
+        }
+
+        .back-to-top.visible {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -556,7 +586,19 @@
         <a href="tel:805-390-1457">📞 Call Now</a>
     </div>
 
+    <a href="#" id="backToTop" class="back-to-top">Back to Top ↑</a>
+
     <script>
+        // Back to Top functionality
+        window.addEventListener('scroll', () => {
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
         function toggleMenu() {
             const menu = document.getElementById('navMenu');
             menu.classList.toggle('active');

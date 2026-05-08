@@ -389,3 +389,34 @@ img{max-width:100%;display:block}
   .split{grid-template-columns:1fr}
   .hero{min-height:520px}
 }
+
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 76, 87, 0.9);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  z-index: 1001;
+  box-shadow: 0 10px 24px rgba(31,41,55,.15);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.15);
+  display: none;
+}
+
+.back-to-top:hover {
+  background: var(--peach);
+  bottom: 35px;
+  box-shadow: 0 14px 30px rgba(31,41,55,.2);
+  color: #fff;
+}
+
+.back-to-top.visible {
+  display: block;
+}
