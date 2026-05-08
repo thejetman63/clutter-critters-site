@@ -86,7 +86,7 @@ img{max-width:100%;display:block}
 .brand-name{font-weight:700}
 .brand-tag{font-size:.92rem; color:var(--muted)}
 
-.site-nav{display:flex; align-items:center; gap:10px;}
+.nav{display:flex; align-items:center; gap:10px;}
 .nav-link{
   text-decoration:none;
   padding:10px 12px;
@@ -103,7 +103,7 @@ img{max-width:100%;display:block}
 }
 .nav-cta:hover{transform:translateY(-1px)}
 
-.nav-toggle{
+.burger{
   display:none;
   width:44px; height:44px;
   border:1px solid rgba(15,76,87,.18);
@@ -111,7 +111,7 @@ img{max-width:100%;display:block}
   border-radius:14px;
   box-shadow:0 8px 18px rgba(31,41,55,.06);
 }
-.nav-toggle span{
+.burger span{
   display:block; height:2px; margin:6px 10px;
   background:rgba(31,41,55,.65);
   border-radius:999px;
@@ -370,8 +370,8 @@ img{max-width:100%;display:block}
 
 /* Mobile nav */
 @media (max-width: 860px){
-  .nav-toggle{display:inline-block}
-  .site-nav{
+  .burger{display:inline-block}
+  .nav{
     position:absolute;
     right:20px; top:66px;
     display:none;
@@ -384,7 +384,7 @@ img{max-width:100%;display:block}
     border:1px solid rgba(15,76,87,.14);
     box-shadow:var(--shadow);
   }
-  .site-nav.open{display:flex}
+  .nav.open{display:flex}
   .nav-link{padding:12px 14px}
   .split{grid-template-columns:1fr}
   .hero{min-height:520px}
