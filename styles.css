@@ -351,8 +351,10 @@ img{max-width:100%;display:block}
 }
 
 .mini-card a {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+  word-wrap: normal;
+  overflow-wrap: normal;
+  font-size: 0.85rem;
+  white-space: nowrap;
 }
 .footer-inner{
   display:flex; gap:18px; justify-content:space-between;
