@@ -6,6 +6,14 @@
       const open = nav.classList.toggle('open');
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
+
+    // Close mobile menu when clicking a link
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
   }
 
   // Contact form mailto fallback
