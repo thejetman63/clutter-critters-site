@@ -34,7 +34,7 @@
       const service = (fd.get('service') || '').toString().trim();
       const message = (fd.get('message') || '').toString().trim();
 
-      const to = (form.getAttribute('data-to') || 'hello@cluttercritters.com').trim();
+      const to = (form.getAttribute('data-to') || 'getorganized@cluttercritters.com').trim();
       const subject = encodeURIComponent('Clutter Critters – Request');
       const body = encodeURIComponent(
         `Name: ${name}\n` +
